@@ -3,7 +3,7 @@ import requests
 import os
 from telebot import types
 
-BOT_TOKEN = os.environ['TELEGRAM_TOKEN']
+BOT_TOKEN = "1719204229:AAFTEDBCSZSJxYmuApcVkSgjCK4NZY5wNlc"
 BOT_URL = "https://learn-english-with-me-bot.herokuapp.com/"
 
 bot = telebot.TeleBot(BOT_TOKEN)
