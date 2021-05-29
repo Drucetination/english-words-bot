@@ -11,12 +11,13 @@ bot = telebot.TeleBot(BOT_TOKEN)
 
 @bot.message_handler(commands=['start', 'help'])
 def welcome(message):
-    markup = types.ReplyKeyboardRemove(selective=False)
-    bot.send_message(message.chat.id,
-                     "Привет, {}, давай изучать английский! С чего начнем?".format(message.from_user.first_name),
-                     reply_markup=markup)
+    bot.reply_to(message, "Hello, did someone call for help?")
+    # markup = types.ReplyKeyboardRemove(selective=False)
+    # bot.send_message(message.chat.id,
+    #                  "Привет, {}, давай изучать английский! С чего начнем?".format(message.from_user.first_name),
+    #                  reply_markup=markup)
     # bot.register_next_step_handler(msg, process_num1_step)
 
 
-if __name__ == '__main__':
-    bot.polling(none_stop=True)
+# if __name__ == '__main__':
+bot.polling(none_stop=True)
