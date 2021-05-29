@@ -9,9 +9,9 @@ bot = telebot.TeleBot(BOT_TOKEN)
 
 @bot.message_handler(commands=['start'])
 def welcome(message):
-    markup = types.InlineKeyboardMarkup()
-    words = types.InlineKeyboardButton('Учить слова')
-    statistics = types.InlineKeyboardButton('Вывести статистику')
+    markup = types.InlineKeyboardMarkup(["Учить слова", "Вывести статистику"])
+    words = types.InlineKeyboardButton('Учить слова', callback_data='1')
+    statistics = types.InlineKeyboardButton('Вывести статистику', callback_data='2')
     markup.add(words, statistics)
     msg = bot.send_message(message.chat.id,
                            "Привет, {}! Давай изучать английский! С чего начнем?".format(message.from_user.first_name),
@@ -20,7 +20,10 @@ def welcome(message):
 
 
 def process_activity_choice(message):
-    bot.reply_to(message, "Здесь мы выбираем активность")
+    if message.text == '1':
+        bot.reply_to(message, "Здесь мы выбираем активность 1")
+    else:
+        bot.reply_to(message, "Здесь мы выбираем активность 2")
 
 
 if __name__ == '__main__':
