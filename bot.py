@@ -9,7 +9,7 @@ bot = telebot.TeleBot(BOT_TOKEN)
 
 @bot.message_handler(commands=['start'])
 def welcome(message):
-    markup = types.ReplyKeyboardMarkup()
+    markup = types.ReplyKeyboardMarkup(one_time_keyboard=True)
     words = types.KeyboardButton('Учить слова')
     statistics = types.KeyboardButton('Вывести статистику')
     markup.add(words, statistics)
@@ -21,9 +21,15 @@ def welcome(message):
 
 def process_activity_choice(message):
     if message.text == 'Учить слова':
-        bot.reply_to(message, "Здесь мы выбираем активность 1")
+        markup = types.ReplyKeyboardMarkup()
+        ru = types.KeyboardButton('Русский')
+        eng = types.KeyboardButton('Английский')
+        msg = bot.send_message(message.chat.id,
+                               "Выбери, с какого языка будем переводить",
+                               reply_markup=markup)
     else:
-        bot.reply_to(message, "Здесь мы выбираем активность 1")
+        msg = bot.send_message(message.chat.id,
+                               "Здесь будет статистика")
 
 
 if __name__ == '__main__':
