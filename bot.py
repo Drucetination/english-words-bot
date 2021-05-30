@@ -23,8 +23,8 @@ def welcome(message):
 
 
 def process_activity_choice(message):
+    markup = types.ReplyKeyboardMarkup()
     if message.text == 'Учить слова' or 'Продолжить':
-        markup = types.ReplyKeyboardMarkup()
         ru = types.KeyboardButton('Русский')
         eng = types.KeyboardButton('Английский')
         markup.add(ru, eng)
@@ -32,9 +32,9 @@ def process_activity_choice(message):
                                "Выбери, с какого языка будем переводить",
                                reply_markup=markup)
         bot.register_next_step_handler(msg, learn_words)
-    else:
+    elif message.text == 'Вывести статистику':
         msg = bot.send_message(message.chat.id,
-                               "Здесь будет статистика")
+                               "Здесь будет статистика",reply_markup=markup)
 
 
 def learn_words(message):
