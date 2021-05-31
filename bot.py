@@ -34,7 +34,7 @@ def process_activity_choice(message):
         bot.register_next_step_handler(msg, learn_words)
     elif message.text == 'Вывести статистику':
         msg = bot.send_message(message.chat.id,
-                               "Здесь будет статистика",reply_markup=markup)
+                               "Здесь будет статистика", reply_markup=markup)
 
 
 def learn_words(message):
@@ -54,7 +54,7 @@ def learn_words(message):
         msg = bot.send_message(message.chat.id,
                                "Выбран английский язык",
                                reply_markup=markup)
-        bot.register_next_step_handler(msg, welcome)
+        bot.register_next_step_handler(msg, learn_words)
 
 
 if __name__ == '__main__':
