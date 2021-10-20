@@ -28,21 +28,9 @@ def welcome(message):
     bot.register_next_step_handler(msg, process_activity_choice)
 
 
-#
-# def start_handler_internal(message):
-#     markup = types.ReplyKeyboardMarkup(one_time_keyboard=True)
-#     words = types.KeyboardButton('Учить слова')
-#     statistics = types.KeyboardButton('Вывести статистику')
-#     markup.add(words, statistics)
-#     msg = bot.send_message(message.chat.id,
-#                            "Привет, {}! Давай изучать английский! С чего начнем?".format(message.from_user.first_name),
-#                            reply_markup=markup)
-#     bot.register_next_step_handler(msg, process_activity_choice)
-
-
 def learn(message):
     markup = types.ReplyKeyboardMarkup(one_time_keyboard=True)
-    back = types.KeyboardButton('/start')
+    back = types.KeyboardButton('Вернуться')
     ru = types.KeyboardButton('Русский')
     eng = types.KeyboardButton('Английский')
     markup.add(back, ru, eng)
