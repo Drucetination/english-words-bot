@@ -29,7 +29,7 @@ def welcome(message):
 
 
 def learn(message):
-    markup = types.ReplyKeyboardMarkup()
+    markup = types.ReplyKeyboardMarkup(one_time_keyboard=True)
     ru = types.KeyboardButton('Русский')
     eng = types.KeyboardButton('Английский')
     markup.add(ru, eng)
@@ -60,7 +60,7 @@ def process_activity_choice(message):
 
 
 def english_to_russian(message):
-    markup = types.ReplyKeyboardMarkup()
+    markup = types.ReplyKeyboardMarkup(one_time_keyboard=True)
     back = types.KeyboardButton('Вернуться')
     forward = types.KeyboardButton('Продолжить переводить с английского')
     markup.add(back, forward)
@@ -83,7 +83,7 @@ def next_e2r_exercise(message):
     frw_1 = types.KeyboardButton(r.get(fake_english_word_1).decode('utf8', errors='ignore'))
     fake_english_word_2 = r.randomkey().decode('utf8', errors='ignore')
     frw_2 = types.KeyboardButton(r.get(fake_english_word_2).decode('utf8', errors='ignore'))
-    markup = types.ReplyKeyboardMarkup()
+    markup = types.ReplyKeyboardMarkup(one_time_keyboard=True)
     answers = [rw, frw_1, frw_2]
     shuffle(answers)
     markup.add(answers[0], answers[1], answers[2])
@@ -126,7 +126,7 @@ def check_answer_e2r(message):
 
 
 def russian_to_english(message):
-    markup = types.ReplyKeyboardMarkup()
+    markup = types.ReplyKeyboardMarkup(one_time_keyboard=True)
     back = types.KeyboardButton('Вернуться')
     forward = types.KeyboardButton('Продолжить переводить с русского')
     markup.add(back, forward)
@@ -143,7 +143,7 @@ def next_r2e_exercise(message):
     ew = types.KeyboardButton(exercise[0])
     few_1 = types.KeyboardButton(r.randomkey().decode('utf8', errors='ignore'))
     few_2 = types.KeyboardButton(r.randomkey().decode('utf8', errors='ignore'))
-    markup = types.ReplyKeyboardMarkup()
+    markup = types.ReplyKeyboardMarkup(one_time_keyboard=True)
     answers = [ew, few_1, few_2]
     shuffle(answers)
     markup.add(answers[0], answers[1], answers[2])
