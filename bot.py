@@ -33,14 +33,16 @@ def learn(message):
     back = types.KeyboardButton('Вернуться')
     ru = types.KeyboardButton('Русский')
     eng = types.KeyboardButton('Английский')
-    markup.add(ru, eng)
+    markup.add(back, ru, eng)
     msg = bot.send_message(message.chat.id,
                            "Выбери, с какого языка будем переводить",
                            reply_markup=markup)
     bot.register_next_step_handler(msg, learn_words)
 
+
 def back_to_start(message):
     welcome(message)
+
 
 def learn_words(message):
     if message.text == 'Русский':
@@ -168,7 +170,6 @@ def process_r2e(message):
 
 
 def r2e_exercise(message):
-
     msg = bot.send_message(message.chat.id,
                            "Проверка ответа...")
     bot.register_next_step_handler(msg, check_answer_r2e)
