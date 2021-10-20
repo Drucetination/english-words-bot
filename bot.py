@@ -71,7 +71,7 @@ def english_to_russian(message):
 
 
 def back_to_start(message):
-    bot.register_next_step_handler(message, welcome)
+    learn(message)
 
 
 def next_e2r_exercise(message):
