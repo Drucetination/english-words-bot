@@ -30,6 +30,7 @@ def welcome(message):
 
 def learn(message):
     markup = types.ReplyKeyboardMarkup(one_time_keyboard=True)
+    back = types.KeyboardButton('Вернуться')
     ru = types.KeyboardButton('Русский')
     eng = types.KeyboardButton('Английский')
     markup.add(ru, eng)
@@ -38,12 +39,16 @@ def learn(message):
                            reply_markup=markup)
     bot.register_next_step_handler(msg, learn_words)
 
+def back_to_start(message):
+    welcome(message)
 
 def learn_words(message):
     if message.text == 'Русский':
         process_r2e(message)
-    else:
+    elif message.text == 'Английский':
         process_e2r(message)
+    else:
+        back_to_start()
 
 
 def statistics(message):
@@ -70,7 +75,7 @@ def english_to_russian(message):
     bot.register_next_step_handler(msg, process_e2r)
 
 
-def back_to_start(message):
+def back_to_learn(message):
     learn(message)
 
 
@@ -95,7 +100,7 @@ def next_e2r_exercise(message):
 
 def process_e2r(message):
     if message.text == "Вернуться":
-        back_to_start(message)
+        back_to_learn(message)
     else:
         next_e2r_exercise(message)
 
@@ -157,7 +162,7 @@ def next_r2e_exercise(message):
 
 def process_r2e(message):
     if message.text == "Вернуться":
-        back_to_start(message)
+        back_to_learn(message)
     else:
         next_r2e_exercise(message)
 
