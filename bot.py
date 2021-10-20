@@ -36,22 +36,22 @@ def process_activity_choice(message):
 
 
 def learn_words(message):
-    if message.text == "Русский" or 'Продолжить переводить с русского':
-        markup = types.ReplyKeyboardMarkup()
-        back = types.KeyboardButton('Вернуться')
-        forward = types.KeyboardButton('Продолжить переводить с русского')
-        markup.add(back, forward)
-        msg = bot.send_message(message.chat.id,
-                               "Выбран русский язык",
-                               reply_markup=markup)
-        bot.register_next_step_handler(msg, welcome)
-    elif message.text == "Английский" or 'Продолжить переводить с английского':
+    if message.text == "Английский" or 'Продолжить переводить с английского':
         markup = types.ReplyKeyboardMarkup()
         back = types.KeyboardButton('Вернуться')
         forward = types.KeyboardButton('Продолжить переводить с английского')
         markup.add(back, forward)
         msg = bot.send_message(message.chat.id,
                                "Выбран английский язык",
+                               reply_markup=markup)
+        bot.register_next_step_handler(msg, welcome)
+    elif message.text == "Русский" or 'Продолжить переводить с русского':
+        markup = types.ReplyKeyboardMarkup()
+        back = types.KeyboardButton('Вернуться')
+        forward = types.KeyboardButton('Продолжить переводить с русского')
+        markup.add(back, forward)
+        msg = bot.send_message(message.chat.id,
+                               "Выбран русский язык",
                                reply_markup=markup)
         bot.register_next_step_handler(msg, welcome)
 
