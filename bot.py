@@ -39,6 +39,13 @@ def learn(message):
     bot.register_next_step_handler(msg, learn_words)
 
 
+def learn_words(message):
+    if message.text == 'Русский':
+        process_r2e(message)
+    else:
+        process_e2r(message)
+
+
 def statistics(message):
     msg = bot.send_message(message.chat.id,
                            "Здесь будет статистика")
@@ -68,7 +75,12 @@ def back_to_start(message):
 
 
 def next_e2r_exercise(message):
-    bot.register_next_step_handler(message, e2r_exercise)
+    english_word = r.randomkey().decode('utf8', errors='ignore')
+    russian_word = r.get(english_word).decode('utf8', errors='ignore')
+    exercise.extend([english_word, russian_word])
+    msg = bot.send_message(message.chat.id,
+                           "Переведи на русский {}".format(english_word))
+    bot.register_next_step_handler(msg, e2r_exercise)
 
 
 def process_e2r(message):
@@ -79,14 +91,11 @@ def process_e2r(message):
 
 
 def e2r_exercise(message):
-    english_word = r.randomkey().decode('utf8', errors='ignore')
-    russian_word = r.get(english_word).decode('utf8', errors='ignore')
-    rw = types.KeyboardButton(russian_word)
+    rw = types.KeyboardButton(exercise[1])
     fake_english_word_1 = r.randomkey().decode('utf8', errors='ignore')
     frw_1 = types.KeyboardButton(r.get(fake_english_word_1).decode('utf8', errors='ignore'))
     fake_english_word_2 = r.randomkey().decode('utf8', errors='ignore')
     frw_2 = types.KeyboardButton(r.get(fake_english_word_2).decode('utf8', errors='ignore'))
-    exercise.extend([english_word, russian_word])
     markup = types.ReplyKeyboardMarkup()
     for word in shuffle([rw, frw_1, frw_2]):
         markup.add(word)
@@ -127,6 +136,11 @@ def russian_to_english(message):
 
 
 def next_r2e_exercise(message):
+    english_word = r.randomkey().decode('utf8', errors='ignore')
+    russian_word = r.get(english_word).decode('utf8', errors='ignore')
+    exercise.extend([english_word, russian_word])
+    msg = bot.send_message(message.chat.id,
+                           "Переведи на английский: {}".format(russian_word))
     bot.register_next_step_handler(message, r2e_exercise)
 
 
@@ -138,12 +152,9 @@ def process_r2e(message):
 
 
 def r2e_exercise(message):
-    english_word = r.randomkey().decode('utf8', errors='ignore')
-    ew = types.KeyboardButton(english_word)
-    russian_word = r.get(english_word).decode('utf8', errors='ignore')
+    ew = types.KeyboardButton(exercise[0])
     few_1 = types.KeyboardButton(r.randomkey().decode('utf8', errors='ignore'))
     few_2 = types.KeyboardButton(r.randomkey().decode('utf8', errors='ignore'))
-    exercise.extend([english_word, russian_word])
     markup = types.ReplyKeyboardMarkup()
     for word in shuffle([ew, few_1, few_2]):
         markup.add(word)
@@ -166,10 +177,10 @@ def wrong_r2e(message):
 
 
 def check_answer_r2e(message):
-    if message.text == exercise[1]:
+    if message.text == exercise[0]:
         correct_r2e(message)
     else:
-        wrong_r2e()
+        wrong_r2e(message)
 
 
 if __name__ == '__main__':
