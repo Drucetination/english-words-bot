@@ -120,8 +120,10 @@ def wrong_e2r(message):
 
 def check_answer_e2r(message):
     if message.text == exercise[1]:
+        exercise.clear()
         correct_e2r(message)
     else:
+        exercise.clear()
         wrong_e2r(message)
 
 
@@ -181,8 +183,10 @@ def wrong_r2e(message):
 
 def check_answer_r2e(message):
     if message.text == exercise[0]:
+        exercise.clear()
         correct_r2e(message)
     else:
+        exercise.clear()
         wrong_r2e(message)
 
 
