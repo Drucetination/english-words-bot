@@ -33,7 +33,7 @@ def learn(message):
 def statistics(message):
     msg = bot.send_message(message.chat.id,
                            "Здесь будет статистика")
-    bot.register_next_step_handler(msg, process_activity_choice)
+    bot.register_next_step_handler(msg, welcome)
 
 
 def process_activity_choice(message):
@@ -43,30 +43,33 @@ def process_activity_choice(message):
         statistics(message)
 
 
-def stats(message):
-    msg = bot.send_message(message.chat.id, "ААААААААААААААААААА")
+def english_to_russian(message):
+    markup = types.ReplyKeyboardMarkup()
+    back = types.KeyboardButton('Вернуться')
+    forward = types.KeyboardButton('Продолжить переводить с английского')
+    markup.add(back, forward)
+    msg = bot.send_message(message.chat.id,
+                           "Выбран английский язык",
+                           reply_markup=markup)
+    bot.register_next_step_handler(msg, welcome)
+
+
+def russian_to_english(message):
+    markup = types.ReplyKeyboardMarkup()
+    back = types.KeyboardButton('Вернуться')
+    forward = types.KeyboardButton('Продолжить переводить с русского')
+    markup.add(back, forward)
+    msg = bot.send_message(message.chat.id,
+                           "Выбран русский язык",
+                           reply_markup=markup)
     bot.register_next_step_handler(msg, welcome)
 
 
 def learn_words(message):
-    if message.text == "Английский" or 'Продолжить переводить с английского':
-        markup = types.ReplyKeyboardMarkup()
-        back = types.KeyboardButton('Вернуться')
-        forward = types.KeyboardButton('Продолжить переводить с английского')
-        markup.add(back, forward)
-        msg = bot.send_message(message.chat.id,
-                               "Выбран английский язык",
-                               reply_markup=markup)
-        bot.register_next_step_handler(msg, welcome)
+    if message.text == ("Английский" or 'Продолжить переводить с английского'):
+        english_to_russian(message)
     elif message.text == "Русский" or 'Продолжить переводить с русского':
-        markup = types.ReplyKeyboardMarkup()
-        back = types.KeyboardButton('Вернуться')
-        forward = types.KeyboardButton('Продолжить переводить с русского')
-        markup.add(back, forward)
-        msg = bot.send_message(message.chat.id,
-                               "Выбран русский язык",
-                               reply_markup=markup)
-        bot.register_next_step_handler(msg, welcome)
+        russian_to_english(message)
 
 
 if __name__ == '__main__':
