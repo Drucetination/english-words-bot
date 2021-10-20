@@ -30,7 +30,7 @@ def welcome(message):
 
 def learn(message):
     markup = types.ReplyKeyboardMarkup(one_time_keyboard=True)
-    back = types.KeyboardButton('Вернуться')
+    back = types.KeyboardButton('/start')
     ru = types.KeyboardButton('Русский')
     eng = types.KeyboardButton('Английский')
     markup.add(back, ru, eng)
