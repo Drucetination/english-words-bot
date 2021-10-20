@@ -109,13 +109,13 @@ def e2r_exercise(message):
 def correct_e2r(message):
     msg = bot.send_message(message.chat.id,
                            "Ура, правильно!")
-    bot.register_next_step_handler(msg, english_to_russian)
+    english_to_russian(msg)
 
 
 def wrong_e2r(message):
     msg = bot.send_message(message.chat.id,
                            "Неверно!")
-    bot.register_next_step_handler(msg, english_to_russian)
+    english_to_russian(msg)
 
 
 def check_answer_e2r(message):
@@ -170,13 +170,13 @@ def r2e_exercise(message):
 def correct_r2e(message):
     msg = bot.send_message(message.chat.id,
                            "Ура, правильно!")
-    bot.register_next_step_handler(msg, russian_to_english)
+    russian_to_english(msg)
 
 
 def wrong_r2e(message):
     msg = bot.send_message(message.chat.id,
                            "Неверно!")
-    bot.register_next_step_handler(msg, russian_to_english)
+    russian_to_english(msg)
 
 
 def check_answer_r2e(message):
