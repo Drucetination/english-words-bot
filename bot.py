@@ -1,8 +1,8 @@
 import telebot
 from telebot import types
-import psycopg2
 
-BOT_TOKEN = "1719204229:AAFTEDBCSZSJxYmuApcVkSgjCK4NZY5wNlc"
+
+BOT_TOKEN = "1719204229:AAHWYDoeN5vTYr3H2Vusv4gdLgwhrjvNe5o"
 BOT_URL = "https://learn-english-with-me-bot.herokuapp.com/"
 
 bot = telebot.TeleBot(BOT_TOKEN)
