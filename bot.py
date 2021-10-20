@@ -28,6 +28,18 @@ def welcome(message):
     bot.register_next_step_handler(msg, process_activity_choice)
 
 
+#
+# def start_handler_internal(message):
+#     markup = types.ReplyKeyboardMarkup(one_time_keyboard=True)
+#     words = types.KeyboardButton('Учить слова')
+#     statistics = types.KeyboardButton('Вывести статистику')
+#     markup.add(words, statistics)
+#     msg = bot.send_message(message.chat.id,
+#                            "Привет, {}! Давай изучать английский! С чего начнем?".format(message.from_user.first_name),
+#                            reply_markup=markup)
+#     bot.register_next_step_handler(msg, process_activity_choice)
+
+
 def learn(message):
     markup = types.ReplyKeyboardMarkup(one_time_keyboard=True)
     back = types.KeyboardButton('/start')
@@ -50,10 +62,10 @@ def learn_words(message):
     elif message.text == 'Английский':
         process_e2r(message)
     else:
-        back_to_start()
+        back_to_start(message)
 
 
-def statistics(message):
+def show_statistics(message):
     msg = bot.send_message(message.chat.id,
                            "Здесь будет статистика")
     bot.register_next_step_handler(msg, welcome)
@@ -63,7 +75,7 @@ def process_activity_choice(message):
     if message.text == ('Учить слова' or 'Продолжить'):
         learn(message)
     elif message.text == 'Вывести статистику':
-        statistics(message)
+        show_statistics(message)
 
 
 def english_to_russian(message):
