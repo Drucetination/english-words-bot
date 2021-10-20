@@ -141,7 +141,7 @@ def next_r2e_exercise(message):
     exercise.extend([english_word, russian_word])
     msg = bot.send_message(message.chat.id,
                            "Переведи на английский: {}".format(russian_word))
-    bot.register_next_step_handler(message, r2e_exercise)
+    bot.register_next_step_handler(msg, r2e_exercise)
 
 
 def process_r2e(message):
