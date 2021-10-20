@@ -90,7 +90,7 @@ def next_e2r_exercise(message):
     msg = bot.send_message(message.chat.id,
                            "Переведи на русский {}".format(english_word),
                            reply_markup=markup)
-    bot.register_next_step_handler(msg, e2r_exercise)
+    bot.register_next_step_handler(msg, check_answer_e2r)
 
 
 def process_e2r(message):
@@ -150,7 +150,7 @@ def next_r2e_exercise(message):
     msg = bot.send_message(message.chat.id,
                            "Переведи на английский: {}".format(russian_word),
                            reply_markup=markup)
-    bot.register_next_step_handler(msg, r2e_exercise)
+    bot.register_next_step_handler(msg, check_answer_r2e)
 
 
 def process_r2e(message):
