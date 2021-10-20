@@ -2,7 +2,7 @@ import telebot
 from telebot import types
 
 
-BOT_TOKEN = "1719204229:AAHWYDoeN5vTYr3H2Vusv4gdLgwhrjvNe5o"
+BOT_TOKEN = "1700397980:AAG_jUlxPxHhLgqxB6bS24bPtcxGx7WFWbk"
 BOT_URL = "https://learn-english-with-me-bot.herokuapp.com/"
 
 bot = telebot.TeleBot(BOT_TOKEN)
